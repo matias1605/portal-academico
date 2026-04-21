@@ -40,4 +40,22 @@ app.MapControllerRoute(
     pattern: "{controller=Home}/{action=Index}/{id?}");
 app.MapRazorPages();
 
+// Seed rol Coordinador
+using (var scope = app.Services.CreateScope())
+{
+    var roleManager = scope.ServiceProvider.GetRequiredService<RoleManager<IdentityRole>>();
+    var userManager = scope.ServiceProvider.GetRequiredService<UserManager<IdentityUser>>();
+
+    if (!await roleManager.RoleExistsAsync("Coordinador"))
+        await roleManager.CreateAsync(new IdentityRole("Coordinador"));
+
+    var coord = await userManager.FindByEmailAsync("coordinador@uni.edu");
+    if (coord == null)
+    {
+        coord = new IdentityUser { UserName = "coordinador@uni.edu", Email = "coordinador@uni.edu", EmailConfirmed = true };
+        await userManager.CreateAsync(coord, "Coord@1234!");
+        await userManager.AddToRoleAsync(coord, "Coordinador");
+    }
+}
+
 app.Run();

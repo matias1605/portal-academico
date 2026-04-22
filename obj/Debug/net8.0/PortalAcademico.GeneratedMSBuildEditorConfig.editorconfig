@@ -22,6 +22,22 @@ build_property._RazorSourceGeneratorDebug =
 build_metadata.AdditionalFiles.TargetPath = QXJlYXNcSWRlbnRpdHlcUGFnZXNcX1ZpZXdTdGFydC5jc2h0bWw=
 build_metadata.AdditionalFiles.CssScope = 
 
+[C:/Users/Matias/Documents/USMP/Programacion 1/PRACTICA2/PortalAcademico/Views/Coordinador/Crear.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcQ29vcmRpbmFkb3JcQ3JlYXIuY3NodG1s
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Users/Matias/Documents/USMP/Programacion 1/PRACTICA2/PortalAcademico/Views/Coordinador/Editar.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcQ29vcmRpbmFkb3JcRWRpdGFyLmNzaHRtbA==
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Users/Matias/Documents/USMP/Programacion 1/PRACTICA2/PortalAcademico/Views/Coordinador/Index.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcQ29vcmRpbmFkb3JcSW5kZXguY3NodG1s
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Users/Matias/Documents/USMP/Programacion 1/PRACTICA2/PortalAcademico/Views/Coordinador/Matriculas.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcQ29vcmRpbmFkb3JcTWF0cmljdWxhcy5jc2h0bWw=
+build_metadata.AdditionalFiles.CssScope = 
+
 [C:/Users/Matias/Documents/USMP/Programacion 1/PRACTICA2/PortalAcademico/Views/Cursos/Detalle.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcQ3Vyc29zXERldGFsbGUuY3NodG1s
 build_metadata.AdditionalFiles.CssScope = 
@@ -36,6 +52,14 @@ build_metadata.AdditionalFiles.CssScope =
 
 [C:/Users/Matias/Documents/USMP/Programacion 1/PRACTICA2/PortalAcademico/Views/Home/Privacy.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcSG9tZVxQcml2YWN5LmNzaHRtbA==
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Users/Matias/Documents/USMP/Programacion 1/PRACTICA2/PortalAcademico/Views/Matriculas/Inscribir.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcTWF0cmljdWxhc1xJbnNjcmliaXIuY3NodG1s
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Users/Matias/Documents/USMP/Programacion 1/PRACTICA2/PortalAcademico/Views/Matriculas/MisMatriculas.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcTWF0cmljdWxhc1xNaXNNYXRyaWN1bGFzLmNzaHRtbA==
 build_metadata.AdditionalFiles.CssScope = 
 
 [C:/Users/Matias/Documents/USMP/Programacion 1/PRACTICA2/PortalAcademico/Views/Shared/Error.cshtml]

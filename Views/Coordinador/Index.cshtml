@@ -1,0 +1,61 @@
+@model IEnumerable<Curso>
+@{
+    ViewData["Title"] = "Panel del Coordinador";
+}
+
+<h2 class="mb-4">Panel del Coordinador</h2>
+
+<a asp-action="Crear" class="btn btn-primary mb-3">+ Nuevo curso</a>
+
+<table class="table table-bordered table-hover">
+    <thead class="table-dark">
+        <tr>
+            <th>Código</th>
+            <th>Nombre</th>
+            <th>Créditos</th>
+            <th>Horario</th>
+            <th>Cupo</th>
+            <th>Estado</th>
+            <th>Acciones</th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var c in Model)
+        {
+            <tr>
+                <td>@c.Codigo</td>
+                <td>@c.Nombre</td>
+                <td>@c.Creditos</td>
+                <td>
+                    @c.HorarioInicio.ToString(@"hh\:mm") –
+                    @c.HorarioFin.ToString(@"hh\:mm")
+                </td>
+                <td>@c.CupoMaximo</td>
+                <td>
+                    <span class="badge bg-@(c.Activo ? "success" : "secondary")">
+                        @(c.Activo ? "Activo" : "Inactivo")
+                    </span>
+                </td>
+                <td>
+                    <a asp-action="Editar" asp-route-id="@c.Id"
+                       class="btn btn-sm btn-warning">Editar</a>
+
+                    <a asp-action="Matriculas" asp-route-cursoId="@c.Id"
+                       class="btn btn-sm btn-info">Matrículas</a>
+
+                    @if (c.Activo)
+                    {
+                        <form asp-action="Desactivar" asp-route-id="@c.Id"
+                              method="post" class="d-inline">
+                            @Html.AntiForgeryToken()
+                            <button type="submit" class="btn btn-sm btn-danger"
+                                    onclick="return confirm('¿Desactivar este curso?')">
+                                Desactivar
+                            </button>
+                        </form>
+                    }
+                </td>
+            </tr>
+        }
+    </tbody>
+</table>

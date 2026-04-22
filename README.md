@@ -38,7 +38,7 @@ dotnet ef database update
 
 ## URL en Render
 
-https://portal-academico.onrender.com
+https://portal-academico-621h.onrender.com
 
 ## Estructura de ramas
 

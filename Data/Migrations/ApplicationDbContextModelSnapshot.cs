@@ -17,6 +17,106 @@ namespace PortalAcademico.Data.Migrations
 #pragma warning disable 612, 618
             modelBuilder.HasAnnotation("ProductVersion", "8.0.20");
 
+            modelBuilder.Entity("Curso", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("INTEGER");
+
+                    b.Property<bool>("Activo")
+                        .HasColumnType("INTEGER");
+
+                    b.Property<string>("Codigo")
+                        .IsRequired()
+                        .HasMaxLength(20)
+                        .HasColumnType("TEXT");
+
+                    b.Property<int>("Creditos")
+                        .HasColumnType("INTEGER");
+
+                    b.Property<int>("CupoMaximo")
+                        .HasColumnType("INTEGER");
+
+                    b.Property<TimeSpan>("HorarioFin")
+                        .HasColumnType("TEXT");
+
+                    b.Property<TimeSpan>("HorarioInicio")
+                        .HasColumnType("TEXT");
+
+                    b.Property<string>("Nombre")
+                        .IsRequired()
+                        .HasColumnType("TEXT");
+
+                    b.HasKey("Id");
+
+                    b.HasIndex("Codigo")
+                        .IsUnique();
+
+                    b.ToTable("Cursos");
+
+                    b.HasData(
+                        new
+                        {
+                            Id = 1,
+                            Activo = true,
+                            Codigo = "MAT101",
+                            Creditos = 4,
+                            CupoMaximo = 30,
+                            HorarioFin = new TimeSpan(0, 10, 0, 0, 0),
+                            HorarioInicio = new TimeSpan(0, 8, 0, 0, 0),
+                            Nombre = "Matemáticas I"
+                        },
+                        new
+                        {
+                            Id = 2,
+                            Activo = true,
+                            Codigo = "FIS201",
+                            Creditos = 3,
+                            CupoMaximo = 25,
+                            HorarioFin = new TimeSpan(0, 12, 0, 0, 0),
+                            HorarioInicio = new TimeSpan(0, 10, 0, 0, 0),
+                            Nombre = "Física II"
+                        },
+                        new
+                        {
+                            Id = 3,
+                            Activo = true,
+                            Codigo = "PRG301",
+                            Creditos = 5,
+                            CupoMaximo = 20,
+                            HorarioFin = new TimeSpan(0, 16, 0, 0, 0),
+                            HorarioInicio = new TimeSpan(0, 14, 0, 0, 0),
+                            Nombre = "Programación Web"
+                        });
+                });
+
+            modelBuilder.Entity("Matricula", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("INTEGER");
+
+                    b.Property<int>("CursoId")
+                        .HasColumnType("INTEGER");
+
+                    b.Property<int>("Estado")
+                        .HasColumnType("INTEGER");
+
+                    b.Property<DateTime>("FechaRegistro")
+                        .HasColumnType("TEXT");
+
+                    b.Property<string>("UsuarioId")
+                        .IsRequired()
+                        .HasColumnType("TEXT");
+
+                    b.HasKey("Id");
+
+                    b.HasIndex("CursoId", "UsuarioId")
+                        .IsUnique();
+
+                    b.ToTable("Matriculas");
+                });
+
             modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityRole", b =>
                 {
                     b.Property<string>("Id")
@@ -213,104 +313,15 @@ namespace PortalAcademico.Data.Migrations
                     b.ToTable("AspNetUserTokens", (string)null);
                 });
 
-            modelBuilder.Entity("PortalAcademico.Models.Curso", b =>
+            modelBuilder.Entity("Matricula", b =>
                 {
-                    b.Property<int>("Id")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("INTEGER");
+                    b.HasOne("Curso", "Curso")
+                        .WithMany("Matriculas")
+                        .HasForeignKey("CursoId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
 
-                    b.Property<bool>("Activo")
-                        .HasColumnType("INTEGER");
-
-                    b.Property<string>("Codigo")
-                        .IsRequired()
-                        .HasMaxLength(20)
-                        .HasColumnType("TEXT");
-
-                    b.Property<int>("Creditos")
-                        .HasColumnType("INTEGER");
-
-                    b.Property<int>("CupoMaximo")
-                        .HasColumnType("INTEGER");
-
-                    b.Property<TimeSpan>("HorarioFin")
-                        .HasColumnType("TEXT");
-
-                    b.Property<TimeSpan>("HorarioInicio")
-                        .HasColumnType("TEXT");
-
-                    b.Property<string>("Nombre")
-                        .IsRequired()
-                        .HasColumnType("TEXT");
-
-                    b.HasKey("Id");
-
-                    b.HasIndex("Codigo")
-                        .IsUnique();
-
-                    b.ToTable("Cursos");
-
-                    b.HasData(
-                        new
-                        {
-                            Id = 1,
-                            Activo = true,
-                            Codigo = "MAT101",
-                            Creditos = 4,
-                            CupoMaximo = 30,
-                            HorarioFin = new TimeSpan(0, 10, 0, 0, 0),
-                            HorarioInicio = new TimeSpan(0, 8, 0, 0, 0),
-                            Nombre = "Matemáticas I"
-                        },
-                        new
-                        {
-                            Id = 2,
-                            Activo = true,
-                            Codigo = "FIS201",
-                            Creditos = 3,
-                            CupoMaximo = 25,
-                            HorarioFin = new TimeSpan(0, 12, 0, 0, 0),
-                            HorarioInicio = new TimeSpan(0, 10, 0, 0, 0),
-                            Nombre = "Física II"
-                        },
-                        new
-                        {
-                            Id = 3,
-                            Activo = true,
-                            Codigo = "PRG301",
-                            Creditos = 5,
-                            CupoMaximo = 20,
-                            HorarioFin = new TimeSpan(0, 16, 0, 0, 0),
-                            HorarioInicio = new TimeSpan(0, 14, 0, 0, 0),
-                            Nombre = "Programación Web"
-                        });
-                });
-
-            modelBuilder.Entity("PortalAcademico.Models.Matricula", b =>
-                {
-                    b.Property<int>("Id")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("INTEGER");
-
-                    b.Property<int>("CursoId")
-                        .HasColumnType("INTEGER");
-
-                    b.Property<int>("Estado")
-                        .HasColumnType("INTEGER");
-
-                    b.Property<DateTime>("FechaRegistro")
-                        .HasColumnType("TEXT");
-
-                    b.Property<string>("UsuarioId")
-                        .IsRequired()
-                        .HasColumnType("TEXT");
-
-                    b.HasKey("Id");
-
-                    b.HasIndex("CursoId", "UsuarioId")
-                        .IsUnique();
-
-                    b.ToTable("Matriculas");
+                    b.Navigation("Curso");
                 });
 
             modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityRoleClaim<string>", b =>
@@ -364,18 +375,7 @@ namespace PortalAcademico.Data.Migrations
                         .IsRequired();
                 });
 
-            modelBuilder.Entity("PortalAcademico.Models.Matricula", b =>
-                {
-                    b.HasOne("PortalAcademico.Models.Curso", "Curso")
-                        .WithMany("Matriculas")
-                        .HasForeignKey("CursoId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
-
-                    b.Navigation("Curso");
-                });
-
-            modelBuilder.Entity("PortalAcademico.Models.Curso", b =>
+            modelBuilder.Entity("Curso", b =>
                 {
                     b.Navigation("Matriculas");
                 });

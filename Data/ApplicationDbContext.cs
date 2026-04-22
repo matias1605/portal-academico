@@ -1,5 +1,6 @@
 ﻿using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore;
+using PortalAcademico.Models;
 
 namespace PortalAcademico.Data;
 
@@ -17,17 +18,14 @@ public class ApplicationDbContext : IdentityDbContext
     {
         base.OnModelCreating(builder);
 
-        // Código único en Curso
         builder.Entity<Curso>()
             .HasIndex(c => c.Codigo)
             .IsUnique();
 
-        // Un usuario no puede estar 2 veces en el mismo curso
         builder.Entity<Matricula>()
             .HasIndex(m => new { m.CursoId, m.UsuarioId })
             .IsUnique();
 
-        // Seed: 3 cursos activos
         builder.Entity<Curso>().HasData(
             new Curso { Id = 1, Codigo = "MAT101", Nombre = "Matemáticas I",
                 Creditos = 4, CupoMaximo = 30,

@@ -1,0 +1,46 @@
+@model Curso
+@{
+    ViewData["Title"] = "Inscribirse en " + Model.Nombre;
+}
+
+<h2 class="mb-4">Confirmar inscripción</h2>
+
+@if (TempData["Error"] != null)
+{
+    <div class="alert alert-danger alert-dismissible">
+        @TempData["Error"]
+        <button type="button" class="btn-close" data-bs-dismiss="alert"></button>
+    </div>
+}
+
+<div class="card mb-4" style="max-width: 500px;">
+    <div class="card-header">
+        <strong>@Model.Nombre</strong>
+    </div>
+    <div class="card-body">
+        <dl class="row mb-0">
+            <dt class="col-sm-4">Código</dt>
+            <dd class="col-sm-8">@Model.Codigo</dd>
+
+            <dt class="col-sm-4">Créditos</dt>
+            <dd class="col-sm-8">@Model.Creditos</dd>
+
+            <dt class="col-sm-4">Horario</dt>
+            <dd class="col-sm-8">
+                @Model.HorarioInicio.ToString(@"hh\:mm") –
+                @Model.HorarioFin.ToString(@"hh\:mm")
+            </dd>
+
+            <dt class="col-sm-4">Cupo máximo</dt>
+            <dd class="col-sm-8">@Model.CupoMaximo</dd>
+        </dl>
+    </div>
+</div>
+
+<form method="post" asp-action="Inscribir" asp-route-cursoId="@Model.Id">
+    @Html.AntiForgeryToken()
+    <input type="hidden" name="confirm" value="yes" />
+    <button type="submit" class="btn btn-success">Confirmar inscripción</button>
+    <a asp-controller="Cursos" asp-action="Detalle" asp-route-id="@Model.Id"
+       class="btn btn-secondary ms-2">Cancelar</a>
+</form>

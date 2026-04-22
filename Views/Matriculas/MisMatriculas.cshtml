@@ -1,0 +1,49 @@
+@model IEnumerable<Matricula>
+@{
+    ViewData["Title"] = "Mis Matrículas";
+}
+
+<h2 class="mb-4">Mis Matrículas</h2>
+
+@if (!Model.Any())
+{
+    <div class="alert alert-info">No tienes matrículas registradas aún.</div>
+}
+else
+{
+    <table class="table table-bordered table-hover">
+        <thead class="table-dark">
+            <tr>
+                <th>Curso</th>
+                <th>Horario</th>
+                <th>Créditos</th>
+                <th>Fecha de registro</th>
+                <th>Estado</th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (var m in Model)
+            {
+                <tr>
+                    <td>@m.Curso.Nombre</td>
+                    <td>
+                        @m.Curso.HorarioInicio.ToString(@"hh\:mm") –
+                        @m.Curso.HorarioFin.ToString(@"hh\:mm")
+                    </td>
+                    <td>@m.Curso.Creditos</td>
+                    <td>@m.FechaRegistro.ToString("dd/MM/yyyy HH:mm")</td>
+                    <td>
+                        <span class="badge bg-@(m.Estado == EstadoMatricula.Confirmada ? "success" :
+                                                m.Estado == EstadoMatricula.Cancelada  ? "danger"  : "warning")">
+                            @m.Estado
+                        </span>
+                    </td>
+                </tr>
+            }
+        </tbody>
+    </table>
+}
+
+<a asp-controller="Cursos" asp-action="Index" class="btn btn-secondary">
+    Volver al catálogo
+</a>
